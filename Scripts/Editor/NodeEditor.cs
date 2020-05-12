@@ -42,7 +42,7 @@ namespace XNodeEditor {
 
 #if ODIN_INSPECTOR
             InspectorUtilities.BeginDrawPropertyTree(objectTree, true);
-            GUIHelper.PushLabelWidth(84);
+            GUIHelper.PushLabelWidth(GetLabelWidth());
             objectTree.Draw(true);
             InspectorUtilities.EndDrawPropertyTree(objectTree);
             GUIHelper.PopLabelWidth();
@@ -85,6 +85,14 @@ namespace XNodeEditor {
             if (type.TryGetAttributeWidth(out width)) return width;
             else return 208;
         }
+
+        public virtual int GetLabelWidth() {
+            Type type = target.GetType();
+            int labelWidth;
+            if (type.TryGetAttributeLabelWidth(out labelWidth)) return labelWidth;
+            else return 84;
+        }
+
 
         /// <summary> Returns color for target node </summary>
         public virtual Color GetTint() {

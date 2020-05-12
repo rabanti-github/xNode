@@ -44,6 +44,15 @@ namespace XNodeEditor {
             return nodeWidth.TryGetValue(nodeType, out width);
         }
 
+        /// <summary> Get custom node label widths defined as second (optional) parameter with [NodeWidth(width, labelWidth)] </summary>
+        public static bool TryGetAttributeLabelWidth(this Type nodeType, out int labelWidth) {
+            if (nodeWidth == null) {
+                CacheAttributes<int, XNode.Node.NodeWidthAttribute>(ref nodeWidth, x => x.labelWidth);
+            }
+            return nodeWidth.TryGetValue(nodeType, out labelWidth);
+        }
+
+
         private static void CacheAttributes<V, A>(ref Dictionary<Type, V> dict, Func<A, V> getter) where A : Attribute {
             dict = new Dictionary<Type, V>();
             for (int i = 0; i < nodeTypes.Length; i++) {

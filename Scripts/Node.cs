@@ -375,14 +375,17 @@ namespace XNode {
             }
         }
 
-        /// <summary> Specify a width for this node type </summary>
+        /// <summary> Specify a width for this node type with optional with of the label elements </summary>
         [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
         public class NodeWidthAttribute : Attribute {
             public int width;
+            public int labelWidth;
             /// <summary> Specify a width for this node type </summary>
             /// <param name="width"> Width </param>
-            public NodeWidthAttribute(int width) {
+            /// <param name="labelWidth"> Optional with of the label elements (default 84) </param>
+            public NodeWidthAttribute(int width, int labelWidth = 84) {
                 this.width = width;
+                this.labelWidth = labelWidth;
             }
         }
 #endregion
